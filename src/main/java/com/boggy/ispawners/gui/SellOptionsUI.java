@@ -97,9 +97,7 @@ public class SellOptionsUI extends GUIHolder {
             // Proses pengurangan item
         } else if (clickedItem.getType() == Material.ARROW) {
             player.closeInventory();
-            new DropsUI(player, spawner, plugin, currentPage).open(player);
+            new DropsUI(player, spawner, plugin, 1);
         }
-
-        player.closeInventory();
     }
 }

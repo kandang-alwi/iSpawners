@@ -31,6 +31,7 @@ public class ISpawnersCommand implements CommandExecutor {
             player.sendMessage("For support contact " + ChatColor.of("#89a2fa") + "boggymc" + ChatColor.WHITE + " on discord");
         } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             plugin.reloadConfig();
+            plugin.loadSpawners();
             player.sendMessage(org.bukkit.ChatColor.translateAlternateColorCodes('&', plugin.prefix + plugin.getConfig().getString("reload_message")));
         } else if (args.length == 2) {
             if (!player.isOp()) { return false; }

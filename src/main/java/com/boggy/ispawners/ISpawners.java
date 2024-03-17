@@ -95,7 +95,7 @@ public final class ISpawners extends JavaPlugin {
         this.saveConfig();
     }
 
-    private void loadSpawners() {
+    public void loadSpawners() {
         if (customConfig.getConfigurationSection(SPAWNERS_CONFIG_SECTION) == null) {
             customConfig.createSection(SPAWNERS_CONFIG_SECTION);
             saveCustomConfig();
