@@ -43,7 +43,7 @@ public class SpawnerUtils {
             currentDrops = plugin.getDrops(spawner).size();
         }
         double percentage = (currentDrops / maxDrops) * 100;
-        percentage = ((double)((int)(percentage*100.0)))/100.0;
+        percentage = ((double) ((int) (percentage * 100.0))) / 100.0;
         return percentage;
     }
 
@@ -64,7 +64,6 @@ public class SpawnerUtils {
 
     public static String formatCurrency(double money) {
         NumberFormat fmt = NumberFormat.getCompactNumberInstance(Locale.US, NumberFormat.Style.SHORT);
-
         return fmt.format(money);
     }
 
@@ -81,7 +80,11 @@ public class SpawnerUtils {
         xpMeta.setLore(Arrays.asList(net.md_5.bungee.api.ChatColor.of("#36ffa4") + "0" + ChatColor.WHITE + " XP Points"));
         item.setItemMeta(xpMeta);
         if (xp > 0) {
-            player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+            try {
+                player.playSound(player.getLocation(), Sound.valueOf(plugin.getConfig().getString("notifications.sound_collect-exp")), 1, 1);
+            } catch (IllegalArgumentException e) {
+                // Do nothing
+            }
         }
     }
 
@@ -94,9 +97,21 @@ public class SpawnerUtils {
         if (price > 0) {
             plugin.clearDrops(plugin, spawner);
             ISpawners.getEcon().depositPlayer(player, price);
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.GREEN + "+$" + SpawnerUtils.formatCurrency(price)));
+
+            // Send sell success message to player
+            String successMessage = plugin.getConfig().getString("notifications.sell_success").replace("{price}", SpawnerUtils.formatCurrency(price));
+            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(ChatColor.translateAlternateColorCodes('&', successMessage)));
+
+            // Send custom sell message to player
+            String customMessage = plugin.getConfig().getString("notifications.sell_message").replace("{price}", SpawnerUtils.formatCurrency(price));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.prefix + customMessage));
+
             if (sound) {
-                player.playSound(player, Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                try {
+                    player.playSound(player.getLocation(), Sound.valueOf(plugin.getConfig().getString("notifications.sound_sell")), 1, 1);
+                } catch (IllegalArgumentException e) {
+                    // Do nothing
+                }
             }
         }
     }

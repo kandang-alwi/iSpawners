@@ -60,8 +60,6 @@ public class ListDataType implements PersistentDataType<byte[], String[]> {
 
             list.add(new String(stringBytes, charset));
         }
-
         return list.toArray(new String[list.size()]);
     }
-
 }

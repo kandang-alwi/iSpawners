@@ -45,5 +45,4 @@ public class SpawnerGenerator {
 
         }, 0, plugin.getConfig().getInt("refresh_time"));
     }
-
 }

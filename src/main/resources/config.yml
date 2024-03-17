@@ -1,14 +1,19 @@
+prefix: "&e&lSPAWNER &d/ "
+reload_message: "&aSpawner configuration reloaded!"
+
 # the delay between spawner item generation
 refresh_time: 80
-
 # the maximum number of items the spawner will generate before waiting to be sold
 max_items: 10000
-
 # the amount the max items will be multiplied by for each added spawner
 max_items_multiplier: 1.5
-
 max_stacked_spawners: 500
 
+notifications:
+  sound_collect-exp: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  sound_sell: "ENTITY_PLAYER_LEVELUP"
+  sell_success: "&2+${price}"
+  sell_message: "&aYou have successfully sold your spawners!"
 
 spawners:
   CREEPER:

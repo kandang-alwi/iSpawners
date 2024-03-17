@@ -15,6 +15,7 @@ public class TabCompletion implements TabCompleter {
             ArrayList<String> tab = new ArrayList<>();
             tab.add("about");
             if (sender.isOp()) {
+                tab.add("reload");
                 tab.add("setspawnerstack");
                 tab.add("givespawner");
             }

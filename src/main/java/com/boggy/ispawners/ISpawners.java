@@ -46,7 +46,13 @@ public final class ISpawners extends JavaPlugin {
     private static final String DROPS_KEY = "drops";
     private static final String SPAWNER_ID_KEY = "spawnerID";
 
+    @Getter
+    public static ISpawners instance;
+
+    public String prefix = this.getConfig().getString("prefix").replace("{prefix}", "&e&lSPAWNER &d/ ");
+
     private File customConfigFile;
+
     @Getter
     private FileConfiguration customConfig;
 
@@ -66,6 +72,7 @@ public final class ISpawners extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        instance = this;
         GUIHolder.init(this);
         saveDefaultConfig();
         createCustomConfig();
@@ -79,6 +86,13 @@ public final class ISpawners extends JavaPlugin {
         spawnerGenerator.startGeneration();
         getCommand("ispawners").setExecutor(new ISpawnersCommand(this));
         getCommand("ispawners").setTabCompleter(new TabCompletion());
+    }
+
+    @Override
+    public void onDisable() {
+        instance = null;
+        this.saveCustomConfig();
+        this.saveConfig();
     }
 
     private void loadSpawners() {
@@ -219,6 +233,7 @@ public final class ISpawners extends JavaPlugin {
         }
         currentSize += stackSizeToAdd;
         ConfigurationSection configSection = customConfig.getConfigurationSection("spawners");
+        assert configSection != null;
         ConfigurationSection spawnerSection = configSection.getConfigurationSection(spawner.getPersistentDataContainer()
                         .get(new NamespacedKey(this, "spawnerID"), PersistentDataType.STRING));
 
@@ -232,6 +247,7 @@ public final class ISpawners extends JavaPlugin {
                 .get(new NamespacedKey(this, "spawnerID"), PersistentDataType.STRING);
 
         ConfigurationSection configSection = customConfig.getConfigurationSection("spawners");
+        assert configSection != null;
         ConfigurationSection spawnerSection = configSection.getConfigurationSection(spawner.getPersistentDataContainer()
                 .get(new NamespacedKey(this, "spawnerID"), PersistentDataType.STRING));
 
@@ -318,7 +334,6 @@ public final class ISpawners extends JavaPlugin {
             return false;
         }
         econ = rsp.getProvider();
-        return econ != null;
+        return true;
     }
-
 }
