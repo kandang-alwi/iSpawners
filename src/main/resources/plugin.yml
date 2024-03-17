@@ -1,6 +1,6 @@
-name: ISpawners
-version: '${project.version}'
-main: com.boggy.ispawners.ISpawners
-api-version: '1.19'
-commands:
-  ispawners:
+name: KaCore
+version: FINAL-DEV
+main: ${project.groupId}.kacore.${project.name}
+author: Jay
+softDepends: [ RedisBungee ]
+description: The core of Universe Group.

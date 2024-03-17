@@ -1,68 +1,76 @@
-prefix: "&e&lSPAWNER &d/ "
-reload_message: "&aSpawner configuration reloaded!"
+# Settings
+prefix: '&e&lKA-CORE &5/ '
+chatfilter-prefix: '&e&lKA-CORE &5/'
+no-permission: '&cPermission denied!'
+globalchat-deny: '&cYou must have an &a[ᴠɪᴘ] &crank or above to use globalchat&c!'
+use-serverswitcher: false
 
-# the delay between spawner item generation
-refresh_time: 80
-# the maximum number of items the spawner will generate before waiting to be sold
-max_items: 10000
-# the amount the max items will be multiplied by for each added spawner
-max_items_multiplier: 1.5
-max_stacked_spawners: 500
+# Discord (Coming Soon)
+#discord-enabled: true
+#discord-embed: false
+#discord-username: "KaCore - StaffChat"
+#discord-webhook: "https://discord.com/api/webhooks/XXXXXXXXXXXXXXXXXX/XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+#discord-image: "https://i.hypera.dev/assets/hypera-icon-white.png"
 
-notifications:
-  sound_collect-exp: "ENTITY_EXPERIENCE_ORB_PICKUP"
-  sound_sell: "ENTITY_PLAYER_LEVELUP"
-  sell_success: "&2+${price}"
-  sell_message: "&aYou have successfully sold your spawners!"
+messages:
+  info-messages:
+    - ' '
+    - '&e&l           Info'
+    - ' '
+    - ' &7Discord: &8https://discord.gg/kandangalwi'
+    - ' &7Website/Store: &8https://kandangalwi.me'
+    - ' '
+    - ' &eMaintained by &cJay'
+    - ' '
+  #dev-team:
+    #- '&6* &cAuthor: &2Jay&e'
+    #- '&6* &cExecutive: &axLqcy&e, &aDio&e, &aJay&e, &aNaileeL&e, &aFriraaa&e, &aKerdus&e, &aEellyciaa&e'
+    #- ''
+    #- '&6* &cAdmin: &aVastAntelope&e, &aVurryCraft&e, &aXYNNZZZZ&e, &aUvoo&e'
+    #- '&6* &cModerator: &7-'
+    #- '&6* &cHelper: &aKanatasan523&e, &aAezteru_&e, &agloryxyz&e, &axyz_arya&e, &apyzxrell&e, &aEyzFarisSkuy&e, &aKazeXz&e, &aneuvie&e, &afrost_grizz&e, &aMutiaalyn&e, &aDaniksv&e, &aCogil&e, &aDikkSenpai&e, &aBloodCunaris&e, &azamzam09&e, &aXeonovy&e, &aKillerWolf4840&e'
+    #- '&6* &cBuilder: &aTROLLexyz&e'
+  chatfilter-message: '&cYour message has been censored or modified for violating the chat rules!'
 
-spawners:
-  CREEPER:
-    exp: 2
-    loot:
-      - GUNPOWDER
-  SKELETON:
-    exp: 2
-    loot:
-      - BONE
-      - ARROW
-  ZOMBIE:
-    exp: 2
-    loot:
-      - ROTTEN_FLESH
-  BLAZE:
-    exp: 2
-    loot:
-      - BLAZE_ROD
-  SPIDER:
-    exp: 2
-    loot:
-      - STRING
-      - SPIDER_EYE
-  PIG:
-    exp: 2
-    loot:
-      - PORKCHOP
-  COW:
-    exp: 2
-    loot:
-      - LEATHER
-      - BEEF
-  IRON_GOLEM:
-    exp: 2
-    loot:
-      - POPPY
-      - IRON_INGOT
+chatfilter:
+  enabled: true
+  anti-capslock:
+    enabled: true
+    percent: 40
+  anti-flood:
+    enabled: true
+  anti-badword:
+    enabled: true
+    replacer: '&r'
+    list:
+      - '[a@4]n?j[i|1]?n?[g9]'
+      - '[^m][a@4]s[uw]'
+      - '[s5][e3]x'
+      - '[s5][e3]k[s5]'
+      - '[^n][t7][a@4][i1!|]'
+      - '[t7][o0]l[o0]l?[^n]'
+      - 'p[o0]rn[o0]?'
+      - 'b[o0]?k[e3]?p'
+      - 'b[a@4]?n?[g0][s5][a@4]?[t7d]'
+      - 'n[i|1][g9][g9]?[a@e]r?'
+      - '[e]?[n]?[g9]?[e3]?n[t7][o0]?[t7d]'
+      - '[s5]h[i|1]?[t7]'
+      - 'k[o0]?n[t7][o0]?[l|1]'
+      - 'm[e3]?[mkq][e3]?[ki]'
+      - 'fu?c?k'
+      - 'l[o0]n[t7][e3]'
+      - '[b8][a@4]?c[o0]?[t7d]'
 
-prices:
-  GUNPOWDER: 10
-  BONE: 10
-  ARROW: 10
-  ROTTEN_FLESH: 10
-  BLAZE_ROD: 10
-  STRING: 10
-  SPIDER_EYE: 10
-  PORKCHOP: 10
-  LEATHER: 10
-  BEEF: 10
-  POPPY: 10
-  IRON_INGOT: 10
+anti-socialspy:
+  enabled: true
+  list:
+    - RCTI
+
+# Database
+sql-database: KaCore
+use-redis-bungee: false
+
+mysql-ip: "localhost"
+mysql-username: "jay"
+mysql-password: "rcti"
+mysql-database: "KaCore"
